@@ -1,0 +1,228 @@
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --text: #1a1d23;
+  --muted: #6b7280;
+  --line: #e4e7ec;
+  --accent: #2563eb;
+  --accent-soft: #e8f0fe;
+  --good: #15803d;
+
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111318;
+    --surface: #1a1d24;
+    --text: #e8eaed;
+    --muted: #9aa1ac;
+    --line: #2b2f38;
+    --accent: #7aa7ff;
+    --accent-soft: #1c2a45;
+    --good: #4ade80;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3, h4 { line-height: 1.35; margin: 0; }
+p { margin: 0 0 12px; }
+
+/* 상단 바 */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px max(24px, calc((100vw - 880px) / 2));
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-weight: 700; color: var(--text); }
+.topbar nav { display: flex; gap: 18px; flex: 1; overflow-x: auto; }
+.topbar nav a { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.topbar nav a:hover { color: var(--text); text-decoration: none; }
+.print {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+main { max-width: 880px; margin: 0 auto; padding: 0 24px 80px; }
+
+/* 소개 */
+.hero { padding: 72px 0 32px; }
+.eyebrow { color: var(--accent); font-weight: 600; font-size: 15px; margin-bottom: 8px; }
+.hero h1 { font-size: 44px; letter-spacing: -0.02em; margin-bottom: 20px; }
+.intro { font-size: 18px; max-width: 720px; }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; padding: 0; margin: 20px 0 0; font-size: 15px; }
+
+/* 숫자 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 24px;
+}
+.stats li { background: var(--surface); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; }
+.stat-value { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.stat-value small { font-size: 15px; font-weight: 600; margin-left: 2px; color: var(--muted); }
+.stat-label { font-size: 14px; color: var(--muted); }
+
+/* 섹션 */
+.section { padding-top: 48px; }
+.section h2 { font-size: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--text); margin-bottom: 24px; }
+.section h3 { font-size: 19px; margin: 36px 0 12px; }
+.section h4 { font-size: 17px; margin-bottom: 8px; }
+.muted { color: var(--muted); font-weight: 400; font-size: 0.9em; }
+.lead { font-size: 18px; font-weight: 500; }
+
+/* 경력 */
+.company { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 20px; }
+.company h3 { font-size: 20px; margin: 0; }
+.timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
+.timeline > li { position: relative; padding: 0 0 24px 24px; }
+.timeline > li::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+.timeline ul { margin: 0; padding-left: 18px; }
+.timeline ul li { margin-bottom: 4px; }
+
+/* 개요 표 */
+.overview { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin: 20px 0 0; }
+.overview div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.overview dt { color: var(--muted); font-size: 14px; padding-top: 1px; }
+.overview dd { margin: 0; font-size: 15px; }
+
+.points { padding-left: 18px; margin: 0 0 12px; }
+.points li { margin-bottom: 6px; }
+.points strong { margin-right: 4px; }
+.plain { padding-left: 18px; margin: 0 0 12px; }
+.plain li { margin-bottom: 6px; }
+.results li::marker { color: var(--good); }
+
+/* 구성도 */
+.figure { margin: 8px 0 0; }
+.diagram { width: 100%; height: auto; display: block; }
+.figure figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; }
+.dg-box { fill: none; stroke: var(--muted); stroke-width: 1.25; }
+.dg-main { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2; }
+.dg-band { fill: var(--surface); stroke: var(--muted); stroke-width: 1.25; }
+.dg-line path { fill: none; stroke: var(--muted); stroke-width: 1.25; }
+.dg-arrow { fill: var(--muted); }
+.diagram text { text-anchor: middle; fill: var(--text); font-family: inherit; }
+.dg-name { font-size: 13px; font-weight: 600; }
+.dg-text { font-size: 13px; }
+.dg-detail { font-size: 11.5px; }
+.dg-sub { font-size: 11.5px; fill: var(--muted) !important; }
+.dg-left { text-anchor: start !important; }
+
+/* 카드 */
+.design, .problems { display: grid; gap: 12px; }
+.card { border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; break-inside: avoid; }
+.card p:last-child, .card .points:last-child { margin-bottom: 0; }
+.num {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: 2px;
+}
+.problem dl { display: grid; grid-template-columns: 40px 1fr; gap: 8px 12px; margin: 12px 0 0; }
+.problem dt { font-weight: 700; color: var(--muted); font-size: 14px; padding-top: 2px; }
+.problem dd { margin: 0; }
+.problem .result { color: var(--good); font-weight: 600; }
+
+/* 표 */
+.table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 12px; }
+.table th, .table td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.table th { font-size: 13px; color: var(--muted); font-weight: 600; background: var(--surface); }
+.table td:first-child { white-space: nowrap; width: 1%; }
+
+/* 기술 */
+.skills { margin: 0; }
+.skills div { display: grid; grid-template-columns: 96px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.skills dt { font-weight: 600; font-size: 15px; padding-top: 3px; }
+.skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; font-size: 14px; }
+
+/* 학력 */
+.edu { list-style: none; padding: 0; margin: 0; }
+.edu li { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.kind { color: var(--muted); font-size: 14px; padding-top: 1px; }
+.date { color: var(--muted); font-size: 14px; white-space: nowrap; }
+
+.footer {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 모바일 */
+@media (max-width: 720px) {
+  .hero { padding-top: 48px; }
+  .hero h1 { font-size: 34px; }
+  .intro, .lead { font-size: 16px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .overview { grid-template-columns: 1fr; }
+  .topbar nav { display: none; }
+  .topbar { justify-content: space-between; }
+  .edu li { grid-template-columns: 1fr auto; }
+  .kind { display: none; }
+  .table td:first-child { white-space: normal; }
+}
+
+/* 인쇄 (PDF로 저장) */
+@media print {
+  :root { --bg: #fff; --surface: #f6f7f9; --text: #111; --muted: #555; --line: #ddd; --accent: #1d4ed8; --accent-soft: #e8f0fe; --good: #15803d; font-size: 12.5px; }
+  @page { size: A4; margin: 14mm; }
+  .topbar, .footer { display: none; }
+  main { max-width: none; padding: 0; }
+  .hero { padding: 0 0 12px; }
+  .hero h1 { font-size: 30px; }
+  .section { padding-top: 24px; }
+  .section h2 { break-after: avoid; }
+  .card, .figure, .table tr, .timeline > li, .stats { break-inside: avoid; }
+  a { color: inherit; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
