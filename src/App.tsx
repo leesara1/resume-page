@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import ArchitectureDiagram from './components/ArchitectureDiagram'
-import { career, education, profile, project, skills, stats } from './data/resume'
+import { career, education, profile, project, skills, stats, workStyle } from './data/resume'
 
 const nav = [
   ['career', '경력'],
@@ -65,6 +65,18 @@ export default function App() {
             </li>
           ))}
         </ul>
+
+        <section className="section workstyle" aria-labelledby="workstyle-title">
+          <h2 id="workstyle-title">일하는 방식</h2>
+          <ul>
+            {workStyle.map(([claim, proof]) => (
+              <li key={claim}>
+                <strong>{claim}</strong>
+                <span>{proof}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <Section id="career" title="경력">
           <div className="company">
