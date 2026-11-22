@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import ArchitectureDiagram from './components/ArchitectureDiagram'
-import { career, education, profile, project, skills, stats, workStyle } from './data/resume'
+import { career, education, profile, project, scope, skills, stats, workStyle } from './data/resume'
 
 const nav = [
   ['career', '경력'],
@@ -72,7 +72,10 @@ export default function App() {
       <main id="top">
         <section className="hero" aria-label="소개">
           <div className="hero-title">
-            <p className="hello">안녕하세요, {profile.name}입니다.</p>
+            <p className="hello">
+              <span className="hello-dot" aria-hidden="true" />
+              안녕하세요, {profile.name}입니다.
+            </p>
             <h1>
               {profile.headline[0]}
               <br />
@@ -108,6 +111,22 @@ export default function App() {
           ))}
         </ul>
 
+        <section className="section" aria-labelledby="scope-title">
+          <h2 id="scope-title" className="section-head">
+            맡는 범위
+            <span className="head-note">요구사항부터 운영까지</span>
+          </h2>
+          <ol className="scope">
+            {scope.map(([step, proof], i) => (
+              <li key={step}>
+                <span className="scope-no" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <strong>{step}</strong>
+                <span>{proof}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         <section className="section" aria-labelledby="workstyle-title">
           <h2 id="workstyle-title" className="section-head">일하는 방식</h2>
           <ul className="principles">
@@ -123,7 +142,8 @@ export default function App() {
         <Section id="career" title="경력">
           <div className="company">
             <h3>{career.company}</h3>
-            <span className="meta">{career.title} · {career.period}</span>
+            <span className="meta">{career.title}</span>
+            <span className="period">{career.period}</span>
           </div>
           <ol className="timeline">
             {career.items.map((item) => (
@@ -131,7 +151,10 @@ export default function App() {
                 <div className="tl-head">
                   <h4>{item.title}</h4>
                   {(item.period || item.note) && (
-                    <span className="meta">{[item.note, item.period].filter(Boolean).join(' · ')}</span>
+                    <span className="tl-tags">
+                      {item.note && <span className="pill pill-sm">{item.note}</span>}
+                      {item.period && <span className="period">{item.period}</span>}
+                    </span>
                   )}
                 </div>
                 <ul className="dots">
@@ -250,7 +273,7 @@ export default function App() {
                   {e.name}
                   {e.org && <span className="meta"> · {e.org}</span>}
                 </span>
-                <span className="date">{e.date}</span>
+                <span className="period">{e.date}</span>
               </li>
             ))}
           </ul>

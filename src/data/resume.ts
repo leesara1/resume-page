@@ -28,6 +28,16 @@ export const stats = [
   { value: '78', unit: '개', label: '백엔드 테스트 클래스' },
 ]
 
+// 첫 화면 아래 '맡는 범위' 띠. 요구사항부터 운영까지 직접 맡은 일을 단계별로 보여줍니다.
+export const scope: [string, string][] = [
+  ['요구사항', '고객사와 주 1회 미팅으로 부서별 요구사항 합의'],
+  ['설계', 'config 테이블 · 설정 플래그로 고객사 5곳을 한 코드로'],
+  ['백엔드', 'Spring Boot · MyBatis, API 741개, TDD'],
+  ['프론트엔드', 'React 웹 화면 117개, PDA 모바일 앱'],
+  ['배포', 'Gitea Actions · Docker, 10분 → 2분'],
+  ['운영', '사내 Linux · AWS 서버, Cloudflare SSL'],
+]
+
 export const workStyle: [string, string][] = [
   ['사용자가 쓰는 화면에서 판단합니다', '실운영 전 한 달간 고객사와 주 1회 미팅, 버튼 규칙 통일과 화면별 단계 안내'],
   ['반복되는 일은 자동화합니다', '배포 10분 → 2분, 신규 고객사 세팅 3분, 공장 조건 자동 적용'],
