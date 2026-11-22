@@ -9,7 +9,6 @@ export const profile = {
   // 첫 화면 큰 제목. 두 번째 줄은 회색으로 표시됩니다.
   headline: ['백엔드\u00a0· 프론트엔드\u00a0· 서버 운영까지', '모두 다루는 만능 개발자입니다.'],
   email: 'lsr406010@gmail.com',
-  phone: '010-8862-6647',
   github: 'https://github.com/leesara1',
   blog: 'https://sarai.tistory.com',
   intro: [

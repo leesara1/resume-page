@@ -14,28 +14,33 @@ function useActiveSection() {
   const [active, setActive] = useState('')
   useEffect(() => {
     const els = nav.map(([id]) => document.getElementById(id)).filter((el): el is HTMLElement => !!el)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const hit = entries.find((e) => e.isIntersecting)
-        if (hit) setActive(hit.target.id)
-      },
-      { rootMargin: '-80px 0px -60% 0px' },
-    )
-    els.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    const update = () => {
+      // 화면 위쪽 1/3 선을 지난 마지막 섹션을 현재 섹션으로 봅니다.
+      const line = window.innerHeight / 3
+      const current = els.filter((el) => el.getBoundingClientRect().top <= line).pop()
+      setActive(current?.id ?? '')
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
   }, [])
   return active
 }
 
-function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  const no = String(nav.findIndex(([key]) => key === id) + 1).padStart(2, '0')
+function Section({ id, title, note, children }: { id: string; title: string; note?: string; children: ReactNode }) {
+  const index = nav.findIndex(([key]) => key === id)
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`}>
-      <h2 id={`${id}-title`} className="section-head">
-        <span className="section-no" aria-hidden="true">{no}</span>
-        {title}
-      </h2>
-      {children}
+      <div className="section-side">
+        {index >= 0 && <span className="section-no" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>}
+        <h2 id={`${id}-title`} className="section-head">{title}</h2>
+        {note && <p className="head-note">{note}</p>}
+      </div>
+      <div className="section-body">{children}</div>
     </section>
   )
 }
@@ -96,26 +101,21 @@ export default function App() {
             <p className="profile-stack">{profile.stack}</p>
             <dl>
               <div><dt>Email</dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>
-              <div><dt>Phone</dt><dd><a href={`tel:${profile.phone.replaceAll('-', '')}`}>{profile.phone}</a></dd></div>
               <div><dt>Updated</dt><dd>{profile.revision}</dd></div>
             </dl>
           </aside>
         </section>
 
         <ul className="bento" aria-label="주요 수치">
-          {stats.map((s, i) => (
-            <li key={s.label} className={i === 0 ? 'tile tile-blush' : 'tile'}>
+          {stats.map((s) => (
+            <li key={s.label} className="tile">
               <span className="tile-value">{s.value}<small>{s.unit}</small></span>
               <span className="tile-label">{s.label}</span>
             </li>
           ))}
         </ul>
 
-        <section className="section" aria-labelledby="scope-title">
-          <h2 id="scope-title" className="section-head">
-            맡는 범위
-            <span className="head-note">요구사항부터 운영까지</span>
-          </h2>
+        <Section id="scope" title="맡는 범위" note="요구사항부터 운영까지">
           <ol className="scope">
             {scope.map(([step, proof], i) => (
               <li key={step}>
@@ -125,10 +125,9 @@ export default function App() {
               </li>
             ))}
           </ol>
-        </section>
+        </Section>
 
-        <section className="section" aria-labelledby="workstyle-title">
-          <h2 id="workstyle-title" className="section-head">일하는 방식</h2>
+        <Section id="workstyle" title="일하는 방식">
           <ul className="principles">
             {workStyle.map(([claim, proof]) => (
               <li key={claim}>
@@ -137,7 +136,7 @@ export default function App() {
               </li>
             ))}
           </ul>
-        </section>
+        </Section>
 
         <Section id="career" title="경력">
           <div className="company">
