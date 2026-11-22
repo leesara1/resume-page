@@ -248,8 +248,6 @@ export default function App() {
           </table>
           <ul className="dots">{project.ai.points.map((t) => <li key={t}>{t}</li>)}</ul>
 
-          <h3 className="sub">결과</h3>
-          <ul className="results">{project.results.map((t) => <li key={t}>{t}</li>)}</ul>
         </Section>
 
         <Section id="skills" title="기술 스택">

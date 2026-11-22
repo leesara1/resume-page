@@ -13,7 +13,7 @@ export const profile = {
   blog: 'https://sarai.tistory.com',
   intro: [
     'ERP 솔루션 회사에서 3년간 풀스택으로 일하며 Visual FoxPro 레거시 ERP를 Spring Boot · React 웹으로 혼자 전환했습니다.',
-    '고객사 5곳이 함께 쓰는 코드베이스를 설계했고, Git 도입부터 Docker 배포 자동화와 서버 운영까지 맡았습니다.',
+    '고객사마다 다른 요구를 하나의 코드베이스로 설계했고, Git 도입부터 Docker 배포 자동화와 서버 운영까지 맡았습니다.',
     '더 큰 규모의 서비스에서 팀과 함께 성장하고 싶습니다.',
   ],
 }
@@ -24,23 +24,22 @@ export const stats = [
   { value: '5', unit: '곳', label: '운영 고객사 (회사당 100여 명)' },
   { value: '10 → 2', unit: '분', label: '배포 시간' },
   { value: '3', unit: '분', label: '신규 고객사 세팅' },
-  { value: '78', unit: '개', label: '백엔드 테스트 클래스' },
 ]
 
 // 첫 화면 아래 '맡는 범위' 띠. 요구사항부터 운영까지 직접 맡은 일을 단계별로 보여줍니다.
 export const scope: [string, string][] = [
   ['요구사항', '고객사와 주 1회 미팅으로 부서별 요구사항 합의'],
-  ['설계', 'config 테이블 · 설정 플래그로 고객사 5곳을 한 코드로'],
-  ['백엔드', 'Spring Boot · MyBatis, API 741개, TDD'],
-  ['프론트엔드', 'React 웹 화면 117개, PDA 모바일 앱'],
-  ['배포', 'Gitea Actions · Docker, 10분 → 2분'],
+  ['설계', 'config 테이블 · 설정 플래그로 고객사별 차이를 한 코드로'],
+  ['백엔드', 'Spring Boot · MyBatis · Spring Security, TDD'],
+  ['프론트엔드', 'React 웹, React PDA 모바일 앱'],
+  ['배포', 'Gitea Actions · Docker로 CI/CD'],
   ['운영', '사내 Linux · AWS 서버, Cloudflare SSL'],
 ]
 
 export const workStyle: [string, string][] = [
   ['사용자가 쓰는 화면에서 판단합니다', '실운영 전 한 달간 고객사와 주 1회 미팅, 버튼 규칙 통일과 화면별 단계 안내'],
-  ['반복되는 일은 자동화합니다', '배포 10분 → 2분, 신규 고객사 세팅 3분, 공장 조건 자동 적용'],
-  ['멈추지 않게 바꿉니다', 'VFP 고객사 20곳과 DB를 공유하며 단계적으로 전환'],
+  ['반복되는 일은 자동화합니다', '배포 파이프라인, 신규 고객사 세팅 스크립트, 공장 조건 자동 적용'],
+  ['멈추지 않게 바꿉니다', 'VFP와 DB를 공유하며 고객사별로 단계적 전환'],
   ['규칙과 기록을 남깁니다', '백엔드 TDD, 공통 작업 규칙 문서, 작업마다 지시문과 결과 기록'],
 ]
 
@@ -54,17 +53,17 @@ export const career = {
       period: '2025.02 ~',
       note: '단독',
       lines: [
-        'Spring Boot · MyBatis + React로 재설계: API 741개, 웹 화면 117개',
-        'VFP 고객사 20곳과 DB를 공유하며 단계적으로 전환, 현재 5곳 · 회사당 100여 명 사용',
-        'config 테이블과 설정 플래그로 고객사별 화면 · 기능을 하나의 코드로 운영, 신규 고객사 세팅 3분',
+        'Spring Boot · MyBatis + React로 백엔드와 웹 화면 전체를 재설계',
+        'VFP 고객사 20곳과 DB를 공유하며 고객사별로 단계적 전환',
+        'config 테이블과 설정 플래그로 고객사별 화면 · 기능을 하나의 코드로 운영',
         '부서별 KPI, 전자결재, 세금계산서, 엑셀 양식 PDF 출력, React PDA 앱, MQTT IoT 연동',
-        'Spring Security + JWT, 백엔드 TDD(테스트 클래스 78개)',
+        'Spring Security + JWT, 백엔드 TDD',
         '고객사와 주 1회 미팅으로 요구사항 합의, 2026.11 신규 고객사 실운영',
       ],
     },
     {
       title: '개발 운영 환경',
-      lines: ['Gitea · Gitea Actions · Docker로 CI/CD 도입(배포 10분 → 2분), 사내 Linux · AWS 서버 운영, Cloudflare SSL'],
+      lines: ['Gitea · Gitea Actions · Docker로 CI/CD 도입, 사내 Linux · AWS 서버 운영, Cloudflare SSL'],
     },
     {
       title: 'AI 에이전트 협업 개발',
@@ -84,11 +83,11 @@ export const career = {
 
 export const project = {
   title: 'VFP 레거시 ERP 웹 전환',
-  summary: 'Visual FoxPro로 만든 사내 ERP 전체를 혼자 웹 · 모바일로 전환해, 고객사 5곳이 하나의 코드베이스로 쓰고 있습니다.',
+  summary: 'Visual FoxPro로 만든 사내 ERP 전체를 혼자 웹 · 모바일로 전환해, 여러 고객사가 하나의 코드베이스로 쓰고 있습니다.',
   overview: [
     ['기간', '2025.02 ~ 진행 중'],
     ['역할', '단독 개발: 설계, BE, 웹, 모바일, 인프라, 고객사 도입'],
-    ['규모', 'API 741개, 웹 화면 117개, 백엔드 테스트 클래스 78개'],
+    ['규모', 'API 741개, 웹 화면 117개'],
     ['고객사', '5곳, 회사당 사용자 100여 명'],
     ['BE', 'Java 11, Spring Boot, MyBatis, Spring Security + JWT, Swagger'],
     ['FE', 'React, Ant Design (웹), React + antd-mobile (모바일)'],
@@ -109,7 +108,7 @@ export const project = {
     '웹과 PDA는 Cloudflare와 Nginx를 거쳐, 현장 설비는 MQTT로 같은 Spring Boot 백엔드에 붙습니다. 백엔드는 표준 DB의 설정을 읽어 고객사마다 다르게 동작합니다.',
   design: [
     {
-      title: '하나의 코드로 고객사 5곳 운영',
+      title: '하나의 코드로 여러 고객사 운영',
       points: [
         ['회사별 기능', '회사 설정 테이블의 플래그로 분기해, 한 고객사를 고쳐도 다른 고객사 동작은 바뀌지 않게 했습니다.'],
         ['공장 단위 분리', 'MyBatis 인터셉터가 조회 쿼리에 공장 조건과 삭제 제외 조건을 자동으로 붙여, 쿼리마다 조건을 빠뜨릴 위험을 없앴습니다.'],
@@ -144,7 +143,7 @@ export const project = {
       problem: 'VFP를 쓰는 회사가 20곳이라 한 번에 바꿀 수 없었습니다.',
       solution:
         '웹이 VFP와 같은 DB를 공유하도록 설계해, 두 프로그램을 함께 쓰면서 회사별로 넘어오게 했습니다. 이관 중 나온 중복 데이터와 한글 인코딩 문제도 정리했습니다.',
-      result: '기존 고객사 업무를 멈추지 않고 전환했고, 현재 5곳이 웹으로 운영 중입니다.',
+      result: '기존 고객사 업무를 멈추지 않고 고객사별로 웹 전환을 이어가고 있습니다.',
     },
     {
       title: '공장 조건 누락 방지',
@@ -193,12 +192,6 @@ export const project = {
       'DB 쓰기와 커밋은 총괄만 하도록 권한을 나눠 실제 고객 데이터를 보호했습니다.',
     ],
   },
-  results: [
-    '고객사 5곳, 회사당 사용자 100여 명이 같은 코드베이스를 씁니다. 신규 고객사는 미팅과 기초자료 이관을 거쳐 2026.11부터 실제 업무에 쓰고 있습니다.',
-    '배포 시간: 수동 10분 → 버튼 클릭 2분 남짓',
-    '새 고객사 세팅: 셸 스크립트로 버튼 클릭 3분. 화면 요청은 대부분 config 수정으로 끝납니다.',
-    '버전 관리와 배포 자동화가 없던 팀에 Git · CI/CD를 처음 자리 잡았습니다.',
-  ],
 }
 
 export const skills: [string, string[]][] = [
